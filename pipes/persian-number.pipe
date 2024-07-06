@@ -1,0 +1,19 @@
+import {Pipe, PipeTransform} from '@angular/core';
+
+@Pipe({
+  name: 'persianNumber',
+  standalone: true
+})
+export class PersianNumberPipe implements PipeTransform {
+
+  transform(value: any): any {
+    if (value === undefined || value === null) {
+      return value;
+    }
+
+    // Convert each digit to Persian numeral while preserving non-digits
+    return String(value).replace(/\d/g, (digit: string) => {
+      return String.fromCharCode(digit.charCodeAt(0) + 1728); // Convert to Persian numeral ASCII code
+    });
+  }
+}
