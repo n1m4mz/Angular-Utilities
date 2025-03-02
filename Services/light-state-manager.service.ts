@@ -14,8 +14,10 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
+type State = Record<string, any>;
+
 @Injectable({providedIn: 'root'})
-export class LightStore<T> {
+export class LightStore<T extends State> {
   private state$: BehaviorSubject<T>;
 
   constructor(initialState: T, private syncWithLocalStorage = false) {
